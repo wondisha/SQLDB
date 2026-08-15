@@ -12,6 +12,7 @@ This folder contains practical AG monitoring and repair scripts for SQL Server.
 - `06_create_ag_health_alert_job.sql`
 - `07_ag_sid_consistency_check.sql`
 - `08_ag_sid_auto_repair.sql`
+- `09_create_ag_sid_check_job_wrapper.sql`
 
 ## Permissions
 
@@ -32,10 +33,11 @@ Most queries require:
 6. Deploy AG alert job for recurring monitoring and email notification.
 7. Run SID consistency check across replicas.
 8. Run SID auto-repair in PREVIEW mode first, then execute mode.
+9. Deploy SID check SQL Agent wrapper for recurring report-only monitoring.
 
 ## SID repair notes (AD groups/users and SQL logins)
 
-In scripts `07` and `08`:
+In scripts `07`, `08`, and `09`:
 
 - Configure `@ReplicaServers` mapping (replica name -> linked server name).
 - Ensure linked servers have RPC OUT enabled.

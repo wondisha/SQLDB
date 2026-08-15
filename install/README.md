@@ -31,3 +31,13 @@ Use this installer to deploy the AG monitoring baseline in one run.
 2. Ensure linked servers have RPC OUT enabled.
 3. Run both jobs manually once and verify output.
 4. Confirm SQL Agent email notifications.
+
+## Central mode
+
+If you have a central SQL instance + central monitoring DB, use scripts in `central-monitor/`.
+Start with:
+
+1. `central-monitor/01_create_central_ag_schema.sql`
+2. `central-monitor/02_ingest_ag_health_proc.sql`
+3. `central-monitor/03_ingest_ag_sid_proc.sql`
+4. `central-monitor/04_create_central_alert_job.sql`

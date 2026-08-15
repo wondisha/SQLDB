@@ -9,6 +9,7 @@ This folder contains practical AG monitoring scripts for SQL Server.
 - `03_ag_listener_and_routing_check.sql`
 - `04_ag_failover_readiness_check.sql`
 - `05_ag_recent_errors_from_xe.sql`
+- `06_create_ag_health_alert_job.sql`
 
 ## Permissions
 
@@ -16,6 +17,7 @@ Most queries require:
 
 - `VIEW SERVER STATE`
 - Metadata visibility on AG DMVs
+- `msdb` access (for SQL Agent job setup)
 
 ## Usage
 
@@ -24,3 +26,12 @@ Most queries require:
 3. Validate listener and read-only routing.
 4. Run failover readiness check before any planned failover.
 5. Review recent AG-related errors from Extended Events.
+6. Deploy AG alert job for recurring monitoring and email notification.
+
+## Job setup notes
+
+In `06_create_ag_health_alert_job.sql`, update:
+
+- Operator name/email
+- Queue thresholds
+- Schedule frequency if needed

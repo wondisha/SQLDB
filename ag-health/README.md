@@ -14,6 +14,14 @@ This folder contains practical AG monitoring and repair scripts for SQL Server.
 - `08_ag_sid_auto_repair.sql`
 - `09_create_ag_sid_check_job_wrapper.sql`
 
+## Installer
+
+For one-step setup, use:
+
+- `../install/01_install_ag_health_pack.sql`
+
+This installer creates helper objects and SQL Agent jobs for AG health + SID consistency monitoring.
+
 ## Permissions
 
 Most queries require:

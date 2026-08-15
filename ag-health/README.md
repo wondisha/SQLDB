@@ -1,6 +1,6 @@
 # Always On Availability Group (AG) Health Pack
 
-This folder contains practical AG monitoring scripts for SQL Server.
+This folder contains practical AG monitoring and repair scripts for SQL Server.
 
 ## Files
 
@@ -10,6 +10,8 @@ This folder contains practical AG monitoring scripts for SQL Server.
 - `04_ag_failover_readiness_check.sql`
 - `05_ag_recent_errors_from_xe.sql`
 - `06_create_ag_health_alert_job.sql`
+- `07_ag_sid_consistency_check.sql`
+- `08_ag_sid_auto_repair.sql`
 
 ## Permissions
 
@@ -18,6 +20,7 @@ Most queries require:
 - `VIEW SERVER STATE`
 - Metadata visibility on AG DMVs
 - `msdb` access (for SQL Agent job setup)
+- `sysadmin` for SID repair execution
 
 ## Usage
 
@@ -27,11 +30,14 @@ Most queries require:
 4. Run failover readiness check before any planned failover.
 5. Review recent AG-related errors from Extended Events.
 6. Deploy AG alert job for recurring monitoring and email notification.
+7. Run SID consistency check across replicas.
+8. Run SID auto-repair in PREVIEW mode first, then execute mode.
 
-## Job setup notes
+## SID repair notes (AD groups/users and SQL logins)
 
-In `06_create_ag_health_alert_job.sql`, update:
+In scripts `07` and `08`:
 
-- Operator name/email
-- Queue thresholds
-- Schedule frequency if needed
+- Configure `@ReplicaServers` mapping (replica name -> linked server name).
+- Ensure linked servers have RPC OUT enabled.
+- Run `08_ag_sid_auto_repair.sql` with `@Execute = 0` first.
+- After validation, set `@Execute = 1`.
